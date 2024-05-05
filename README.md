@@ -3,10 +3,10 @@ Merhabalar🖐<br>
 Bu projede kullanıcılar sisteme kayıt oldukları Username ve Email adresleriyle giriş yaptıktan sonra gelen ve giden mesajları görme,yeni mesaj gönderme,mesajları silme ,profil bilgilerini düzenleme ve şifre değiştirme gibi işlemlere erişim sağlayabilirler..<br>
 
 Projemde kullandığım katmanlar;
-📌 Business Layer
-📌 Presentation Layer
-📌 Entity Layer
-📌 Data Access Layer
+📌 Business Layer<br>
+📌 Presentation Layer<br>
+📌 Entity Layer<br>
+📌 Data Access Layer<br>
 
 Proje kapsamında kullanılan teknolojiler.<br>
 
