@@ -16,7 +16,7 @@ Proje kapsamında kullanılan teknolojiler.<br>
 📌 Microsoft.Entity.FrameworkCore.SqlServer (8.0.3)<br>
 📌 Microsoft.Entity.FrameworkCore.Tools (8.0.3)<br>
 📌 Entity Framework Core<br>
-📌 Ajax<br>
+📌 JavaScript<br>
 📌 Asp.Net Core Identity & Rolleme<br>
 📌 N Tier Architecture<br>
 📌 Repository Design Pattern<br>
