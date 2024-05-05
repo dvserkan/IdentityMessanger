@@ -1,0 +1,53 @@
+﻿@model EntityLayer.Concrete.UserRegisterViewModel
+
+<!-- Kayıt ol modalı -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeRegisterModal()">&times;</span>
+        <!-- Kayıt formu -->
+        <form class="pt-3" asp-action="Index" asp-controller="Register" method="post" enctype='multipart/form-data'>
+            <br />
+            <h2 style="margin-left:25%;"><b>Kayıt Olma Formu</b></h2>
+            <div class="form-group">
+                <label>Adınız</label>
+                <input type="text" asp-for="Name" class="form-control"  required/>
+            </div>
+            <br />
+            <div class="form-group">
+                <label>Soyadınız</label>
+                <input type="text" asp-for="Surname" class="form-control" required />
+            </div>
+            <br />
+            <div class="input-group">
+                <label class="input-group-text" for="">Resim Yükle</label>
+                <input type="file" asp-for="Picture" class="form-control">
+            </div>
+            <br />
+            <div class="form-group">
+                <label>Şifreniz</label>
+                <input type="password" asp-for="Password" class="form-control" required />
+            </div>
+            <br />
+            <div class="form-group">
+                <label>Şifre Tekrar</label>
+                <input type="password" asp-for="ConfirmPassword" class="form-control" required />
+            </div>
+            <br />
+            <div class="form-group">
+                <label>Kullanıcı Adı</label>
+                <input type="text" asp-for="UserName" class="form-control" required />
+            </div>
+            <br />
+            <div class="form-group">
+                <label>Mail Adresiniz</label>
+                <input type="email" asp-for="Mail" class="form-control" required />
+            </div>
+            <br />
+            <div class="text-danger" asp-validation-summary="ModelOnly">
+            </div>
+            <div class="mt-3">
+                <button class="btn btn-Info" style="margin-top:20px;">Kayıt Ol</button>
+            </div>
+        </form>
+    </div>
+</div>

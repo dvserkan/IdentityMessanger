@@ -1,0 +1,28 @@
+﻿@model EntityLayer.Concrete.WriterMessage
+@{
+    ViewData["Title"] = "ReceiverMessageDetails";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Mesaj Detayları</h4>
+            <div class="table-responsive">
+				<form class="form-group table-bordered">
+					@Html.HiddenFor(x => x.WriterMessageID, new { @class = "form-control" })
+
+					@Html.Label("Alıcı Adı")
+					@Html.TextBoxFor(x => x.ReceiverName, new { @class = "form-control" })
+					<br />
+					@Html.Label("Alıcı Mail")
+					@Html.TextBoxFor(x => x.Receiver, new { @class = "form-control" })
+					<br />
+					@Html.Label("Mesaj")
+					@Html.TextAreaFor(x => x.MessageContent, 10, 3, new { @class = "form-control" })
+				</form>
+            </div>
+        </div>
+    </div>
+</div>

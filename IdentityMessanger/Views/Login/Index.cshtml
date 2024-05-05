@@ -1,0 +1,242 @@
+﻿@model EntityLayer.Concrete.UserLoginViewModel
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>S.Ç Messenger</title>
+	<link rel="shortcut icon" href="https://i.hizliresim.com/qlba60r.png" />
+	<!-- jQuery kütüphanesi yüklendi -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			overflow: hidden;
+			background-size: cover;
+			transition: background-image 1s ease-in-out;
+		}
+
+		.login-container {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: rgba(255, 255, 255, 0.8);
+			padding: 40px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			width: 25%;
+			max-width: 500px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.brand-logo img {
+			max-width: 150px;
+			margin-bottom: 10px;
+		}
+
+		.login-form {
+			max-width: 350px;
+			margin: 0 auto;
+		}
+
+		.input-group {
+			margin-bottom: 30px;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+
+		input {
+			width: 100%;
+			padding: 15px;
+			border: 1px solid #ccc;
+			border-radius: 8px;
+			box-sizing: border-box;
+		}
+
+		button {
+			width: 100%;
+			padding: 15px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 8px;
+			cursor: pointer;
+			font-size: 18px;
+		}
+
+			button:hover {
+				background-color: #45a049;
+			}
+
+		.form-check {
+			margin-bottom: 20px;
+		}
+
+		/* Modal stil */
+		.modal {
+			display: none; /* Modalı başlangıçta gizle */
+			position: fixed;
+			z-index: 1;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgba(0,0,0,0.4); /* Arkaplanı hafifçe karart */
+		}
+
+		.modal-content {
+			background-color: #fefefe;
+			margin: 10% auto; /* Dikey hizalama */
+			padding: 20px;
+			border: 1px solid #888;
+			width: 80%;
+			max-width: 400px; /* Modalın maksimum genişliği */
+			border-radius: 10px;
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+			animation-name: animatetop;
+			animation-duration: 0.4s;
+		}
+
+		/* Modal içeriği için kapatma düğmesi stil */
+		.close {
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+
+			.close:hover,
+			.close:focus {
+				color: black;
+				text-decoration: none;
+				cursor: pointer;
+			}
+
+		/* Modal açılış animasyonu */
+		keyframes animatetop {
+			from
+
+		{
+			top: -300px;
+			opacity: 0
+		}
+
+		to {
+			top: 0;
+			opacity: 1
+		}
+
+		}
+
+		/* Input grupları arasındaki mesafe */
+		.input-group {
+			margin-bottom: 15px;
+		}
+	</style>
+</head>
+<body style="background-image: url('https://i.hizliresim.com/tryxccl.jpg');">
+
+	<div class="login-container">
+		<div class="brand-logo" style="text-align: center;">
+			<img src="https://i.hizliresim.com/qlba60r.png" alt="logo">
+		</div>
+		<h3 style="text-align: center;">Merhaba Messenger Hoş Geldiniz!</h3>
+		<h6 class="font-weight-light" style="text-align: center;">Devam etmek için giriş yapın.</h6>
+		<form class="login-form" method="post">
+			<div class="input-group">
+				<label for="exampleInputEmail1">Kullanıcı Adınız</label>
+				<input type="text" class="form-control form-control-lg" id="exampleInputEmail1" name="Username" placeholder="Kullanıcı adınız" required>
+			</div>
+			<div class="input-group">
+				<label for="exampleInputPassword1">Şifreniz</label>
+				<input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="Password" placeholder="Şifreniz" required>
+			</div>
+			<div>
+				<b>@Html.ValidationSummary(true, "", new { @class = "text-danger", @style = "color: red;" })</b>
+
+			</div>
+			<div class="mt-3">
+				<button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onclick="girisYap()">Giriş Yap</button>
+			</div>
+		</form>
+		<!-- Kayıt ol modalı tetikleyici buton -->
+		<button onclick="openRegisterModal()" style="background-color: #007bff; color: white; width: 150px; margin-top:20px; margin-left:32%;">Kayıt Ol</button>
+
+	</div>
+
+	@await Html.PartialAsync("/Views/Default/_RegisterModalPartial.cshtml")
+
+	<!-- Yükleme ekranı -->
+	<div class="loader-container" id="loader">
+		<div class="loader"></div>
+		<p style="color: white;"></p>
+	</div>
+
+	<script>
+		const backgroundImages = ['https://i.hizliresim.com/bodyzo1.jpg', 'https://i.hizliresim.com/jlos894.jpg', 'https://i.hizliresim.com/tryxccl.jpg'];
+		let currentImageIndex = 0;
+
+		setInterval(() => {
+			currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
+			document.body.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`;
+		}, 2000);
+
+		function girisYap() {
+			var kullaniciAdi = document.getElementById('exampleInputEmail1').value;
+			var sifre = document.getElementById('exampleInputPassword1').value;
+
+			if (kullaniciAdi.trim() === '' || sifre.trim() === '') {
+				return;
+			}
+
+			bekleStart();
+		}
+
+		function bekleStart() {
+			var htmlContent = "<div id=\"divBekle\" style=\"position: fixed;right: 0;left: 0;top: 45%;\"></div>";
+			$("body").append(htmlContent);
+
+			$("body").append("<div style=\"position:fixed; width:100%; z-index:99999; height:100%; top:0px; left:0px; background-color:white; opacity:0.8; background-image:url('https://i.hizliresim.com/3xht2uo.gif'); background-position:center center;background-repeat:no-repeat;\" id=\"divBekle\"></div>");
+		}
+
+		function bekleStop(id) {
+			$("#divBekle").remove();
+
+			if (id != undefined) {
+				$("#divBekle_" + id).each(function () {
+					$(this).remove();
+				});
+			} else {
+				$("#divBekle").each(function () {
+					$(this).remove();
+				});
+			}
+		}
+
+		// Kayıt modalını açan fonksiyon
+		function openRegisterModal() {
+			var modal = document.getElementById("registerModal");
+			modal.style.display = "block"; // Modalı görünür yap
+		}
+
+		// Kayıt modalını kapatan fonksiyon
+		function closeRegisterModal() {
+			var modal = document.getElementById("registerModal");
+			modal.style.display = "none"; // Modalı gizle
+		}
+	</script>
+
+</body>
+</html>

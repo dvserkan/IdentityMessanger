@@ -1,0 +1,101 @@
+﻿@{
+	Layout = null;
+	ViewData["default"] = "active";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>S.Ç Messenger Profil</title>
+	<link rel="stylesheet" href="~/skydash/vendors/feather/feather.css">
+	<link rel="stylesheet" href="~/skydash/vendors/ti-icons/css/themify-icons.css">
+	<link rel="stylesheet" href="~/skydash/vendors/css/vendor.bundle.base.css">
+	<link rel="stylesheet" href="~/skydash/css/vertical-layout-light/style.css">
+	<link rel="shortcut icon" href="https://i.hizliresim.com/qlba60r.png" />
+</head>
+
+<body>
+	<div class="container-scroller">
+		<!-- partial:../../partials/_navbar.html -->
+		@await Html.PartialAsync("/Views/Default/_SideBarPartial.cshtml")
+		<!-- partial -->
+		<div class="container-fluid page-body-wrapper">
+			<!-- partial:../../partials/_settings-panel.html -->
+			@await Html.PartialAsync("/Views/Default/_SettingsBar.cshtml")
+			<!-- partial -->
+			<!-- partial:../../partials/_sidebar.html -->
+			<nav class="sidebar sidebar-offcanvas" id="sidebar">
+				<ul class="nav">
+					<li class="nav-item @ViewData["default"]">
+						<a class="nav-link" href="/Dashboard/Index/">
+							<i class="icon-grid menu-icon"></i>
+							<span class="menu-title">Dashboard</span>
+						</a>
+					</li>
+					<li class="nav-item" @ViewData["default"]>
+						<a class="nav-link" href="/Message/ReceiverMessage/">
+							<i class="ti-notepad menu-icon"></i>
+							<span class="menu-title">Gelen Mesajlar</span>
+							<span class="badge bg-primary text-white">@ViewBag.Gelen</span>
+						</a>
+
+					</li>
+					<li class="nav-item" @ViewData["default"]>
+						<a class="nav-link" href="/Message/SenderMessage/">
+							<i class="ti-agenda menu-icon"></i>
+							<span class="menu-title">Giden Mesajlar</span>
+							<span class="badge bg-success text-white">@ViewBag.Giden</span>
+						</a>
+					</li>
+					<li class="nav-item" @ViewData["default"]>
+						<a class="nav-link" href="/Message/RubbishMessage/">
+							<i class="ti-trash menu-icon"></i>
+							<span class="menu-title">Çöp Kutusu</span>
+							<span class="badge bg-danger text-white">@ViewBag.Cop</span>
+						</a>
+					</li>
+					<li class="nav-item" @ViewData["default"]>
+						<a class="nav-link" href="/Message/SendMessage/">
+							<i class="ti-cloud menu-icon"></i>
+							<span class="menu-title">Yeni Mesaj</span>
+						</a>
+					</li>
+					<li class="nav-item" @ViewData["default"]>
+						<a class="nav-link" href="/Dashboard/ProfileIndex/">
+							<i class="ti-microphone menu-icon"></i>
+							<span class="menu-title">Profil</span>
+						</a>
+					</li>
+					<li class="nav-item" @ViewData["default"]>
+						<a class="nav-link" href="/Login/LogOut/">
+							<i class="ti-power-off menu-icon"></i>
+							<span class="menu-title">Çıkış Yap</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<div class="main-panel">
+				<div class="content-wrapper">
+					<div class="row">
+
+						@RenderBody()
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="~/skydash/vendors/js/vendor.bundle.base.js"></script>
+	<script src="~/skydash/js/off-canvas.js"></script>
+	<script src="~/skydash/js/hoverable-collapse.js"></script>
+	<script src="~/skydash/js/template.js"></script>
+	<script src="~/skydash/js/settings.js"></script>
+	<script src="~/skydash/js/todolist.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

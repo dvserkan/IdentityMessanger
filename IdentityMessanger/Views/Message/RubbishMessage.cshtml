@@ -1,0 +1,66 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using EntityLayer.Concrete
+@model IPagedList<WriterMessage>
+
+@{
+    ViewData["Title"] = "RubbishMessage";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+    int sayi = 0;
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Çöp Kutusu</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Konu</th>
+                            <th>Alıcı</th>
+                            <th>Gönderen</th>
+                            <th>Tarih</th>
+                            <th>Saat</th>
+                            <th>Detaylar</th>
+                            <th class="text-center">İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            sayi++;
+                            <tr>
+                                <th>@sayi</th>
+                                <td>@item.Subject</td>
+                                <td>@item.ReceiverName</td>
+                                <td>@item.SenderName</td>
+                                <td>@(((DateTime)item.Date).ToString("dd-MMM-yyyy"))</td>
+                                <td>@(((DateTime)item.Date).ToString("t"))</td>
+                                <td><a href="/Message/ReceiverMessageDetails/@item.WriterMessageID" class="btn btn-outline-primary">Mesajı Gör</a></td>
+                                <td class="text-center"><a href="/Message/RubbishMessager/@item.WriterMessageID" class="btn btn-success">Geri Taşı</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@* @Html.PagedListPager((IPagedList)Model, page => Url.Action("SenderMessage", new { page })) *@
+<div class="pull-right">
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("RubbishMessage",
+            new
+            {
+                page
+
+            }),
+            new PagedListRenderOptions
+    {
+        LiElementClasses = new string[] { "page-item" },
+        PageClasses = new string[] { "page-link" },
+        Display = PagedListDisplayMode.IfNeeded
+
+    })
+</div>

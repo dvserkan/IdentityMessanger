@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="row">
+            <div class="col-12 col-xl-12 mb-4 mb-xl-0">
+                <h3 class="font-weight-bold">Hoşgeldin @ViewBag.v</h3>
+                <h6 class="font-weight-normal mb-0">Identity Mesajlaşma Paneline Hoş Geldiniz.<br /> İlk Mesajınızı Göndermek için <span class="text-primary"><a href="/Message/SendMessage/">Hemen Tıkla!</a></span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card tale-bg">
+            <div class="card-people mt-auto">
+                <img src="https://i.hizliresim.com/ixl45et.jpg" alt="people">
+                <div class="weather-info">
+                    <div class="d-flex">
+                        <div>
+                            <h2 class="mb-0 font-weight-normal text-white"><i class="icon-sun mr-2"></i>@ViewBag.v5<sup>C</sup></h2>
+                        </div>
+                        <div class="ml-2">
+                            <h4 class="location font-weight-normal text-white">İstanbul</h4>
+                            <h6 class="font-weight-normal text-white">Türkiye</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 grid-margin transparent">
+        <div class="row">
+            <div class="col-md-6 mb-4 stretch-card transparent">
+                <div class="card card-tale">
+                    <div class="card-body">
+                        <p class="mb-4">Gelen Mesaj Sayısı</p>
+                        <p class="fs-30 mb-2">@ViewBag.Gelen</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4 stretch-card transparent">
+                <div class="card card-dark-blue">
+                    <div class="card-body">
+                        <p class="mb-4">Giden Mesaj Sayısı</p>
+                        <p class="fs-30 mb-2">@ViewBag.Giden</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                <div class="card card-light-blue">
+                    <div class="card-body">
+                        <p class="mb-4">Silinen Mesaj Sayısı</p>
+                        <p class="fs-30 mb-2">@ViewBag.Cop</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 stretch-card transparent">
+                <div class="card card-light-danger">
+                    <div class="card-body">
+                        <p class="mb-4">Toplam Kullanıcı Sayısı</p>
+                        <p class="fs-30 mb-2">@ViewBag.v3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-title">Mesajlaşma Paneli</p>
+                <p class="font-weight-500">Sitemize kayıt olan kullanıcılar arasında özgürce iletişim kurabilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <p class="card-title">Kurallar</p>
+                </div>
+                <p class="font-weight-500">Mesajlaşma panelinde argo veya hakaret içeren mesajlar kesinlikle kabul edilmez. Bu kurala uymayanlar süresiz olarak banlanacaktır.</p>
+            </div>
+        </div>
+    </div>
+</div>
